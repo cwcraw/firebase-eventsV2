@@ -1,1 +1,1 @@
-web: cd view; npm start
+web: cd view && npm start
