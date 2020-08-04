@@ -7,7 +7,6 @@ exports.getAllEvents = (request, response) => {
     .get()
     .then((data) => {
       let events = [];
-      console.log(data);
       data.forEach((doc) => {
         events.push({
           eventId: doc.id,
@@ -27,7 +26,6 @@ exports.getAllEvents = (request, response) => {
 };
 
 exports.postEvent = (request, response) => {
-  console.log(request.body);
   if (request.body.event.trim() === "") {
     return response.status(400).json({ event: "Event must not be empty" });
   }
@@ -63,7 +61,6 @@ exports.postEvent = (request, response) => {
 };
 
 exports.deleteEvent = (request, response) => {
-  console.log(request.body);
   const document = db.doc(`/events/${request.params.eventId}`);
   document
     .get()
