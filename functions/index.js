@@ -6,6 +6,8 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 });
 
 const app = require('express')();
+const cors = require('cors');
+app.use(cors({origin:true}));
 
 const {
     getAllEvents,
