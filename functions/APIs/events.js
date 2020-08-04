@@ -46,10 +46,11 @@ exports.postEvent = (request, response) => {
     time: request.body.time,
     note: request.body.note,
   };
-
+  console.log(newEventItem)
   db.collection("events")
     .add(newEventItem)
     .then((doc) => {
+      console.log(doc)
       const responseEventItem = newEventItem;
       responseEventItem.id = doc.id;
       return response.json(responseEventItem);
@@ -83,9 +84,6 @@ exports.deleteEvent = (request, response) => {
 };
 
 exports.editEvent = (request, response) => {
-  if (request.body.eventId) {
-    response.status(403).json({ message: "Not allowed to edit" });
-  }
   let document = db.collection("events").doc(`${request.params.eventId}`);
   document
     .update(request.body)
